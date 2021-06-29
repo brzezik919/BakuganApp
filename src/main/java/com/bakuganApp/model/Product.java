@@ -10,7 +10,7 @@ public class Product {
     private int id;
     private String type;
     private String name;
-    private String condition;
+    private String productState;
     private String rarity;
     private int levelPower;
     private String image;
@@ -50,12 +50,12 @@ public class Product {
         this.name = name;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getProductState() {
+        return productState;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setProductState(String productState) {
+        this.productState = productState;
     }
 
     public String getRarity() {
