@@ -18,12 +18,12 @@ public class AuctionController {
         this.auctionService = auctionService;
     }
 
-    @GetMapping("/product/{series}/{type}/auction/{id}")
+    @GetMapping("/api/product/{series}/{type}/auction/{id}")
     ResponseEntity<Auction> getProduct(@PathVariable Long id, @PathVariable String series, @PathVariable String type){
         return ResponseEntity.ok(auctionService.getAuction(id, series, type));
     }
 
-    @GetMapping("/product/{series}/{type}/auction")
+    @GetMapping("/api/product/{series}/{type}/auction")
     ResponseEntity<Page<Auction>> getListProduct(@PathVariable String series, @PathVariable String type, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         return ResponseEntity.ok(auctionService.getProductListByTypeAndSeries(type, series, page.orElse(0), size.orElse(20)));
     }
