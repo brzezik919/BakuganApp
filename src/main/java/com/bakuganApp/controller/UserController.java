@@ -3,10 +3,7 @@ package com.bakuganApp.controller;
 import com.bakuganApp.model.User;
 import com.bakuganApp.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -23,4 +20,11 @@ public class UserController {
     ResponseEntity<User> getUser(@PathVariable int id){
         return ResponseEntity.ok(userService.getUser(id));
     }
+
+    @PutMapping("/api/user/{id}/save")
+    ResponseEntity<?> changeDetailsUser(@PathVariable int id, @RequestBody User toUpdate) {
+        return userService.updateUser(id, toUpdate) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+
+    }
+
 }
