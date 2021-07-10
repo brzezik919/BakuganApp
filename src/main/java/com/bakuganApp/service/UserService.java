@@ -3,6 +3,9 @@ package com.bakuganApp.service;
 import com.bakuganApp.model.User;
 import com.bakuganApp.model.UserRepository;
 import com.bakuganApp.model.UserRole;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -55,5 +58,10 @@ public class UserService {
     public User createUser(User toSave) {
         toSave.setRole(UserRole.USER_ROLE.toString());
         return userRepository.save(toSave);
+    }
+
+    public Page<User> getAllStandardUsers(int currentPage, int pageSize){
+        Pageable page = PageRequest.of(currentPage, pageSize);
+        return userRepository.findByRole(UserRole.USER_ROLE.toString(), page);
     }
 }

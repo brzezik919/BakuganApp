@@ -2,10 +2,12 @@ package com.bakuganApp.controller;
 
 import com.bakuganApp.model.User;
 import com.bakuganApp.service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -42,6 +44,11 @@ public class UserController {
     ResponseEntity<?> createUser(@RequestBody User toSave){
         User userSaved = userService.createUser(toSave);
         return ResponseEntity.created(URI.create("/api/user/" + userSaved.getId())).body(userSaved);
+    }
+
+    @GetMapping("/api/users")
+    ResponseEntity<Page<User>> getAllUsers(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
+        return ResponseEntity.ok(userService.getAllStandardUsers(page.orElse(0), size.orElse(20)));
     }
 
 }
