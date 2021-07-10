@@ -1,6 +1,5 @@
 package com.bakuganApp.service;
 
-import com.bakuganApp.adapter.SqlMessageRepository;
 import com.bakuganApp.model.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,14 +11,12 @@ import java.time.LocalDateTime;
 @Service
 public class MessageService {
     private final MessageRepository messageRepository;
-    private final SqlMessageRepository sqlMessageRepository;
     private final UserRepository userRepository;
     private final ConversationRepository conversationRepository;
     private final ConversationService conversationService;
 
-    public MessageService(MessageRepository messageRepository, SqlMessageRepository sqlMessageRepository, UserRepository userRepository, ConversationRepository conversationRepository, ConversationService conversationService) {
+    public MessageService(MessageRepository messageRepository, UserRepository userRepository, ConversationRepository conversationRepository, ConversationService conversationService) {
         this.messageRepository = messageRepository;
-        this.sqlMessageRepository = sqlMessageRepository;
         this.userRepository = userRepository;
         this.conversationRepository = conversationRepository;
         this.conversationService = conversationService;

@@ -2,7 +2,6 @@ package com.bakuganApp.service;
 
 import com.bakuganApp.model.Conversation;
 import com.bakuganApp.model.ConversationRepository;
-import com.bakuganApp.model.Message;
 import com.bakuganApp.model.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
