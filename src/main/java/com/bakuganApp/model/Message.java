@@ -13,12 +13,12 @@ public class Message {
     private String content;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_writer")
-    private User userWriter;
+    @JoinColumn(name = "id_conversation")
+    private Conversation conversation;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_reader")
-    private User userReader;
+    @JoinColumn(name = "id_user_writer")
+    private User userWriter;
 
     private LocalDateTime time;
 
@@ -42,20 +42,12 @@ public class Message {
         this.content = content;
     }
 
-    public User getUserWriter() {
-        return userWriter;
-    }
+    public Conversation getConversation() {
+       return conversation;
+   }
 
-    public void setUserWriter(User userWriter) {
-        this.userWriter = userWriter;
-    }
-
-    public User getUserReader() {
-        return userReader;
-    }
-
-    public void setUserReader(User userReader) {
-        this.userReader = userReader;
+    public void setConversation(Conversation conversation) {
+        this.conversation = conversation;
     }
 
     public LocalDateTime getTime() {
@@ -64,5 +56,13 @@ public class Message {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+    public User getUserWriter() {
+        return userWriter;
+    }
+
+    public void setUserWriter(User userWriter) {
+        this.userWriter = userWriter;
     }
 }
