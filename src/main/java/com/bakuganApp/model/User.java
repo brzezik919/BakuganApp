@@ -112,15 +112,4 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-
-    @OneToMany(mappedBy = "userBuyer")
-    private Collection<Auction> auction;
-
-    public Collection<Auction> getAuction() {
-        return auction;
-    }
-
-    public void setAuction(Collection<Auction> auction) {
-        this.auction = auction;
-    }
 }

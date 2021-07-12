@@ -15,14 +15,12 @@ public class UserController {
 
     private final UserService userService;
 
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/api/user/{id}")
-    ResponseEntity<User> getUser(@PathVariable int id){
-        return ResponseEntity.ok(userService.getUser(id));
+    ResponseEntity<User> getUser(@PathVariable int id){ return ResponseEntity.ok(userService.getUser(id));
     }
 
     @PutMapping("/api/user/{id}/save")
