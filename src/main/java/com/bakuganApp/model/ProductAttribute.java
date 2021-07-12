@@ -1,6 +1,6 @@
 package com.bakuganApp.model;
 
-public enum Attribute {
+public enum ProductAttribute {
     FIRE ("Fire"),
     WATER ("Water"),
     EARTH ("Earth"),
@@ -12,7 +12,7 @@ public enum Attribute {
 
     private final String state;
 
-    Attribute(String value){
+    ProductAttribute(String value){
         state = value;
     }
 
