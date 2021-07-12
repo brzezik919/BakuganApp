@@ -27,4 +27,9 @@ public class AuctionController {
     ResponseEntity<Page<Auction>> getListProduct(@PathVariable String series, @PathVariable String type, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         return ResponseEntity.ok(auctionService.getProductListByTypeAndSeries(type, series, page.orElse(0), size.orElse(20)));
     }
+
+    @PutMapping("/api/auction/{id}/buy_it")
+    ResponseEntity<?> auctionBuyIt(@PathVariable Long id, @RequestParam("id_buyer") int idBuyer){
+        return auctionService.buyProductAuction(id, idBuyer) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
 }
