@@ -22,7 +22,7 @@ public class UserService {
     }
 
     public boolean updateUser(int id, User userToSave){
-        if(!userRepository.existsById(id)){
+       if(!userRepository.existsById(id)){
             return false;
         }
         User userFound = getUser(id);

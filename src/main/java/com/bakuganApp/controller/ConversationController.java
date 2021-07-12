@@ -13,7 +13,6 @@ import java.util.Optional;
 public class ConversationController {
     private final ConversationService conversationService;
 
-
     public ConversationController(ConversationService conversationService) {
         this.conversationService = conversationService;
     }

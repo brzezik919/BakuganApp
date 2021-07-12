@@ -15,17 +15,15 @@ public class UserController {
 
     private final UserService userService;
 
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/api/user/{id}")
-    ResponseEntity<User> getUser(@PathVariable int id){
-        return ResponseEntity.ok(userService.getUser(id));
+    ResponseEntity<User> getUser(@PathVariable int id){ return ResponseEntity.ok(userService.getUser(id));
     }
 
-    @PutMapping("/api/user/{id}/save")
+    /*@PutMapping("/api/user/{id}/save")
     ResponseEntity<?> changeDetailsUser(@PathVariable int id, @RequestBody User toUpdate) {
         return userService.updateUser(id, toUpdate) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
@@ -49,6 +47,6 @@ public class UserController {
     @GetMapping("/api/users")
     ResponseEntity<Page<User>> getAllUsers(@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         return ResponseEntity.ok(userService.getAllStandardUsers(page.orElse(0), size.orElse(20)));
-    }
+    }*/
 
 }
