@@ -12,15 +12,32 @@ public class AuctionService {
     private final AuctionRepository auctionRepository;
     private final UserRepository userRepository;
     private final ProductService productService;
+    private final ProductRepository productRepository;
 
-    public AuctionService(AuctionRepository auctionRepository, UserRepository userRepository, ProductService productService) {
+    public AuctionService(AuctionRepository auctionRepository, UserRepository userRepository, ProductService productService, ProductRepository productRepository) {
         this.auctionRepository = auctionRepository;
         this.userRepository = userRepository;
         this.productService = productService;
+        this.productRepository = productRepository;
     }
 
     public Auction getAuction(Long id, String series, String type){
         return auctionRepository.findByIdAndProduct_SeriesAndProduct_TypeOrderByProduct_Name(id, series, type);
+    }
+
+    public boolean createAuction(Auction auctionToSave){
+        try{
+            Product productAuction = productRepository.findById(auctionToSave.getProduct().getId());
+            auctionToSave.setState(AuctionState.ONGOING.toString());
+            auctionToSave.setUserSeller(productAuction.getOwner());
+            auctionToSave.setProduct(productAuction);
+            auctionRepository.save(auctionToSave);
+            return true;
+        }
+        catch (NullPointerException e){
+            return false;
+        }
+
     }
 
     public Auction getAuction(Long id){

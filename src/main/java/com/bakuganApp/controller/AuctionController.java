@@ -19,17 +19,22 @@ public class AuctionController {
     }
 
     @GetMapping("/api/product/{series}/{type}/auction/{id}")
-    ResponseEntity<Auction> getProduct(@PathVariable Long id, @PathVariable String series, @PathVariable String type){
+    ResponseEntity<Auction> getAuction(@PathVariable Long id, @PathVariable String series, @PathVariable String type){
         return ResponseEntity.ok(auctionService.getAuction(id, series, type));
     }
 
     @GetMapping("/api/product/{series}/{type}/auction")
-    ResponseEntity<Page<Auction>> getListProduct(@PathVariable String series, @PathVariable String type, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
+    ResponseEntity<Page<Auction>> getListAuction(@PathVariable String series, @PathVariable String type, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size){
         return ResponseEntity.ok(auctionService.getProductListByTypeAndSeries(type, series, page.orElse(0), size.orElse(20)));
     }
 
     @PutMapping("/api/auction/{id}/buy_it")
     ResponseEntity<?> auctionBuyIt(@PathVariable Long id, @RequestParam("id_buyer") int idBuyer){
         return auctionService.buyProductAuction(id, idBuyer) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("/api/auction/create")
+    ResponseEntity<?> createAuction(@RequestBody Auction auctionToSave){
+        return auctionService.createAuction(auctionToSave) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
