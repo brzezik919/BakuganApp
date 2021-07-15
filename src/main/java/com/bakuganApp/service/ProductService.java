@@ -6,6 +6,8 @@ import com.bakuganApp.model.User;
 import com.bakuganApp.model.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
@@ -29,5 +31,9 @@ public class ProductService {
             return false;
         }
 
+    }
+
+    public List<Product> getListProduct(int id){
+        return productRepository.findByOwner_Id(id);
     }
 }
