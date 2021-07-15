@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakugan App</title>
+</head>
+<body>
+    <div>
+        <form>
+            <label for="productid">Product ID</label>
+            <input type="number" name="productid" id="productid"/>
+            <label for="productid">Owner ID</label>
+            <input type="number" name="ownerid" id="ownerid"/>
+            <label for="productid">Cena</label>
+            <input type="number" name="cena" id="cena"/>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        function Submit(event) {
+            event.preventDefault();
+            const data = new FormData(event.target);
+            const pID = data.get('productid');
+            const oID = data.get('ownerid');
+            const price = data.get('cena');
+            console.log({ pID });
+            console.log({ oID });
+            console.log({ price });
+            // tu zamiast console logów ma wrzucać do bazy danych
+            }
+            const form = document.querySelector('form');
+            form.addEventListener('submit', Submit);
+    </script>
+</body>
+</html>
